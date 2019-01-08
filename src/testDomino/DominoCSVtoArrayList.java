@@ -1,5 +1,4 @@
 package testDomino;
-//TEST
 
 
 import java.io.BufferedReader;
