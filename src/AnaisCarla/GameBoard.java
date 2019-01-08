@@ -1,4 +1,4 @@
-package testDomino;
+package AnaisCarla;
 
 public class GameBoard {
 

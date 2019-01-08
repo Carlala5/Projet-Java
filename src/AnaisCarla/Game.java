@@ -1,6 +1,4 @@
-package testDomino;
-
-import testDomino.DominoCSVtoArrayList.Test;
+package AnaisCarla;
 
 public class Game {
 	public static Test[]liste;
