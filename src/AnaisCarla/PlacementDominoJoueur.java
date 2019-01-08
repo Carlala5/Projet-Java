@@ -1,4 +1,4 @@
-package testDomino;
+package AnaisCarla;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-import testDomino.DominoCSVtoArrayList.Test;
 
 /*
  * Cette fonction a pour but de demander au joueur des coordonées pour qu'il choisisse ou placer son domino
