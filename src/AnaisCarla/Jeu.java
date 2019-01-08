@@ -145,7 +145,7 @@ public void tirageJoueur (int nbJoueurs) {
 }
 }
 
-k:utciytyir yriiut
+eoiezf oizefuoqzefoiqzuefnoinqzue,ofiuze
 
 
 
