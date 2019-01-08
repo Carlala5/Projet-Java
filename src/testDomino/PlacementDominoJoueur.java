@@ -1,6 +1,10 @@
 package testDomino;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 import testDomino.DominoCSVtoArrayList.Test;
 
@@ -12,32 +16,81 @@ public class PlacementDominoJoueur {
 	    
 	    
 	public static void coordonnees_domino () {
-		int tableauCoordonnees []= {0, 1, 2, 3 ,4};
+		List <Integer> liste = new ArrayList<>(Arrays.asList(0, 1, 2, 3 ,4));
 		int i = 0;
-		int x1;
-		char reponse = ' ';
-		char answer;
+		int x1 = 0;
 		
 		Scanner scan = new Scanner(System.in);	
+		Scanner scan2 = new Scanner(System.in);
 		
-		System.out.println("Veuillez entrer la ligne de la premiere case de votre domino");
-		x1 = scan.nextInt();
-		
-		while (true) {
-			for (i = 0 ;  i < tableauCoordonnees.length ; i++) {
-				
-				if (x1 == tableauCoordonnees[i]) {					
-					System.out.println("Voulez vous placer votre domino horizontalement ou verticalement ? (H/V)");	
-					reponse = scan.next().charAt(0);
-				}			
+		Boolean running = true;
+		while (running) {
+			
+			try {
+				System.out.println("Veuillez entrer la ligne de la premiere case de votre domino (entre 0 et 4) ");
+				x1 = scan.nextInt();
 			}
-		break;	
-		}
-		 if (x1 != tableauCoordonnees[i]) {
-			System.out.println("Ce que vous avez entré ne correspond pas à une case du tableau, voulez-vous réessayer ? (O/N)");
-			answer = scan.next().charAt(0);
-		}
-	}	
+			catch (Exception e) {
+				System.out.println("Ce que vous avez entré ne correspond pas à une case du tableau.");
+				break;
+			}			
+			
+			Iterator<Integer> iterator = liste.iterator();
+			while (iterator.hasNext()){
+				int value = iterator.next();
+				if (x1 == value){
+					
+					
+					Boolean running2 = true;
+					while (running2) {
+						System.out.println("Voulez vous placer votre domino horizontalement ou verticalement ? (H/V)");
+						String reponse = scan2.nextLine();
+						switch ( reponse) {
+						case "H":
+							System.out.println("trop bien vous avez choisi le bon mode");
+							running2 = false;
+							break;
+						case "V":
+							System.out.println("trop bien vous avez choisi le bon mode");
+							running2 = false;
+							break;
+						default:
+							System.out.println("faux");						
+						}	
+					}					
+					running = false;					
+				}
+				
+				}
+		//System.out.println("okCe que vous avez entré ne correspond pas à une case du tableau.");
+			
+		}			
+	}
+			
+//			
+//			
+//			if (x1 == tableauCoordonnees[i]) {	
+//				System.out.println("Voulez vous placer votre domino horizontalement ou verticalement ? (H/V)");
+//			}
+//		}
+//		}
+			
+			
+			
+//			for (i = 0 ;  i < tableauCoordonnees.length ; i++) {
+//				
+//				if (x1 == tableauCoordonnees[i]) {					
+//					System.out.println("Voulez vous placer votre domino horizontalement ou verticalement ? (H/V)");	
+//					
+//				}			
+//			}
+//		break;	
+//		}
+//		 if (x1 != tableauCoordonnees[i]) {
+//			System.out.println("Ce que vous avez entré ne correspond pas à une case du tableau, voulez-vous réessayer ? (O/N)");
+//			
+//		}
+//	}	
 			
 		
 		
