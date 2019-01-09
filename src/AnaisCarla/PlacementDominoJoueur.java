@@ -16,7 +16,11 @@ public class PlacementDominoJoueur {
  * Création du plateau
  * 	
  */
-	public enum Cell {O,C,Z}; // O for Empty, C for Castle, Z to test
+	public enum Cell {O,C,CHA,FOR,MER,PRA,MIN,MON,Z}; 
+	/* O for Empty, C for Castle, CHA for Champ, FOR for Foret, PRA for Prairie, MIN for Mine, MON for Montagne Z to test
+	 * 
+	 */
+	
 	
 	private static Cell [][] board;	
 	
@@ -77,7 +81,7 @@ public class PlacementDominoJoueur {
 				if (x1 == value){
 					
 					while (running1) {
-					try {
+					try {						
 						System.out.println("Veuillez entrer la colonne de la premiere case de votre domino (entre 0 et 4) ");
 						y1 = scan.nextInt();
 						
@@ -99,13 +103,18 @@ public class PlacementDominoJoueur {
 							while (running2) {
 								System.out.println("Voulez vous placer votre domino horizontalement ou verticalement ? (H/V)");
 								String reponse = scan2.nextLine();
-								switch ( reponse) {
+								switch (reponse) {
 								case "H":
 									System.out.println("trop bien vous avez choisi le bon mode");
+									b.setCell(x1, y1 + 1 , Cell.Z);
+									System.out.println(b);
+									
 									running2 = false;
 									break;
 								case "V":
 									System.out.println("trop bien vous avez choisi le bon mode");
+									b.setCell(x1 + 1, y1, Cell.Z);
+									System.out.println(b);
 									running2 = false;
 									break;
 								default:
