@@ -7,192 +7,138 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+
+
 /*
  * Cette fonction a pour but de demander au joueur des coordonées pour qu'il choisisse ou placer son domino
  */
-
 public class PlacementDominoJoueur {
+
+	
+	public enum Cell {E,C,D}; // E for Empty, C for Castle
+	
+	private static Cell [][] board;
+	
+	
+	public static void GameBoard() {
+		board = new Cell [5][5];
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				board [i][j] = Cell.E;
+			}
+		}
+		
+	}
+	
+	public String toString() {
+		String result = "";
+		for (Cell[]row : board) { // a for for each loop
+			for (Cell c : row) {
+				result += c;
+			}
+			result += "\n";
+	}
+		return result;
+	}
+
+	
+	public static void setCell(int row, int col, Cell value) { //particular method to change a particular cell
+		board[row][col] = value;		
+	}
 	    
-	    
-	public static void coordonnees_domino () {
+	public static void coordonnees_domino (int x1,int y1) {
 		List <Integer> liste = new ArrayList<>(Arrays.asList(0, 1, 2, 3 ,4));
 		int i = 0;
-		int x1 = 0;
+//		int x1 = 0;
+//		int y1 = 0;
 		
 		Scanner scan = new Scanner(System.in);	
 		Scanner scan2 = new Scanner(System.in);
 		
 		Boolean running = true;
+		Boolean running1 = true;
 		while (running) {
-			
 			try {
 				System.out.println("Veuillez entrer la ligne de la premiere case de votre domino (entre 0 et 4) ");
 				x1 = scan.nextInt();
 			}
 			catch (Exception e) {
-				System.out.println("Ce que vous avez entré ne correspond pas à une case du tableau.");
+				System.out.println("Ce que vous avez entré ne correspond pas à une ligne du tableau.");
 				break;
-			}			
-			
+			}
 			Iterator<Integer> iterator = liste.iterator();
 			while (iterator.hasNext()){
 				int value = iterator.next();
 				if (x1 == value){
 					
+					while (running1) {
+					try {
+						System.out.println("Veuillez entrer la colonne de la premiere case de votre domino (entre 0 et 4) ");
+						y1 = scan.nextInt();
+						
+					}
+					catch (Exception e) {
+						System.out.println("Ce que vous avez entré ne correspond pas à une colonne du tableau.");
+						break;
+					}
 					
-					Boolean running2 = true;
-					while (running2) {
-						System.out.println("Voulez vous placer votre domino horizontalement ou verticalement ? (H/V)");
-						String reponse = scan2.nextLine();
-						switch ( reponse) {
-						case "H":
-							System.out.println("trop bien vous avez choisi le bon mode");
-							running2 = false;
-							break;
-						case "V":
-							System.out.println("trop bien vous avez choisi le bon mode");
-							running2 = false;
-							break;
-						default:
-							System.out.println("faux");						
+					Iterator<Integer> iterator2 = liste.iterator();
+					while (iterator2.hasNext()) {
+						int value2 = iterator2.next();
+						if (y1 == value2) {
+							Boolean running2 = true;
+							while (running2) {
+								System.out.println("Voulez vous placer votre domino horizontalement ou verticalement ? (H/V)");
+								String reponse = scan2.nextLine();
+								switch ( reponse) {
+								case "H":
+									System.out.println("trop bien vous avez choisi le bon mode");
+									running2 = false;
+									break;
+								case "V":
+									System.out.println("trop bien vous avez choisi le bon mode");
+									running2 = false;
+									break;
+								default:
+									System.out.println("faux");						
+								}	
+							}
 						}	
-					}					
+					}	
+					
+					}
+					running1 = false;
 					running = false;					
 				}
 				
 				}
-		//System.out.println("okCe que vous avez entré ne correspond pas à une case du tableau.");
+		
 			
 		}			
 	}
 			
-//			
-//			
-//			if (x1 == tableauCoordonnees[i]) {	
-//				System.out.println("Voulez vous placer votre domino horizontalement ou verticalement ? (H/V)");
-//			}
-//		}
-//		}
-			
-			
-			
-//			for (i = 0 ;  i < tableauCoordonnees.length ; i++) {
-//				
-//				if (x1 == tableauCoordonnees[i]) {					
-//					System.out.println("Voulez vous placer votre domino horizontalement ou verticalement ? (H/V)");	
-//					
-//				}			
-//			}
-//		break;	
-//		}
-//		 if (x1 != tableauCoordonnees[i]) {
-//			System.out.println("Ce que vous avez entré ne correspond pas à une case du tableau, voulez-vous réessayer ? (O/N)");
-//			
-//		}
-//	}	
-			
-		
-		
-//		do {
-//			do {
-//				i = 0;
-//				System.out.println("Veuillez entrer la ligne de la premiere case de votre domino");
-//				x1 = scan.nextInt();
-//				while (i<tableauCoordonnees.length && x1 != tableauCoordonnees[i])
-//			i++;
-//			
-//			if (i < tableauCoordonnees.length)
-//				System.out.println(x1 + " est une coordonnée valide");
-//			else
-//				System.out.println(x1 + " n'est pas une coordonnée valide");
-//		} while (i >= tableauCoordonnees.length);
-//			
-//			do {
-//				System.out.println("Voulez-vous essayer à nouveau ? (O/N)");
-//				reponse = scan.next().charAt(0);
-//			}while (reponse != 'N' && reponse != 'O');
-//		} while (reponse == 'O');
-//				
-//			}
-		
-			
-//		
-//		System.out.println("Veuillez entrer la colonne de la premiere case de votre domino");
-//		int y1 = scan.nextInt();
-//		
-//		try {
-//			if (y1 >= 0 && y1 <= 5) {
-//		}
-//			
-//			
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} 
-//		// suite a cela, on aura (x1, y1)
-//		
-//		
-//		System.out.println("Veuillez entrer la ligne de la deuxième case de votre domino");
-//		int x2 = scan.nextInt();
-//		try {
-//			if (x2 >= 0 && x2 <= 5) {
-//		}
-//			
-//			
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} 
-//		
-//		System.out.println("Veuillez entrer la colonne de la deuxième case de votre domino");
-//		int y2 = scan.nextInt();
-//		try {
-//			if (y2 >= 0 && y2 <= 5) {
-//		}
-//			
-//			
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} 
-		// suite a cela, on aura (x2,y2)
-		
-		
-		/*
-		 * Vérifier si ce qui a été rentré correspond bien à des coordonnées
-		 * Et qu'elles soient bien entre 0 et 4 (Tableau de 5*5)
-		 */
-				
-		
-		/*
-		 * Vérifier si ce qui a été rentrer correspond bien à des coordonnées
-		 * Et qu'elles soient bien entre 0 et 8 ou 1 et 9 ???
-		 */
-//	}
 	
-	/*
-	 * Vérifie si c'est bien un domino selon les coordonnées des case 1 et case 2 entrées par le joueur
-	 */
-	
-//	public static void unicite_domino() {
-//		if (i_1 == i_2) { //cases choisies sont sur la meme ligne
-//			if (j_2 == j_1 + 1 || j_2 == j_1 - 1) {
-//				
-//				// condition vérifiée --> domino horizontal				
-//			}
-//		}
-//		else if (j_1 == j_2) { //cases choisies sont sur la meme colonne
-//			if (i_2 == i_1 + 1 || i_2 == i_1 -1) {
-//				
-//				// condition vérifiée --> domino vertical
-//			}
-//			
-//		}
-//	}
-
-	public static void main(String[] args) {
-		PlacementDominoJoueur.coordonnees_domino ();
-
-	}
-	
+		 public static void main(String[] args) {
+			 PlacementDominoJoueur b = new PlacementDominoJoueur();
+			GameBoard();
+			
+			 
+			 
+			 
+			 /*We put a C in the middle, because at the beginning each castle of each player
+			  * is placed in the middle of the board
+			  */
+			 b.setCell(0, 0, Cell.C); // va de 0 à 8 (ligne,colonne)
+			 System.out.println(b);
+			 System.out.println("Veuillez entrer la ligne de la premiere case de votre domino (entre 0 et 4) ");
+			 Scanner scan = new Scanner(System.in);
+			 
+			 int x1 = scan.nextInt();
+			 System.out.println("Veuillez entrer la colonne de la premiere case de votre domino (entre 0 et 4) ");
+			 Scanner scan2 = new Scanner(System.in);
+			 int y1 = scan2.nextInt();
+			
+			 b.setCell(x1, y1, Cell.D);
+			 System.out.println(b);
+		 }	
 }
-
-
-	

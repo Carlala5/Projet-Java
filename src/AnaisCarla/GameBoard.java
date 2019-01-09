@@ -47,6 +47,9 @@ public class GameBoard {
 		  * is placed in the middle of the board
 		  */
 		 b.setCell(0, 0, Cell.C); // va de 0 à 8 (ligne,colonne)
+//		 PlacementDominoJoueur.coordonnees_domino(x1,y1);
+//		 
+//		 b.setCell( x1,y1, value);
 		 System.out.println(b);
 			
 	 }

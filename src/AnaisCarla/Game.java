@@ -1,5 +1,7 @@
 package AnaisCarla;
 
+import AnaisCarla.DominoCSVtoArrayList.Test;
+
 public class Game {
 	public static Test[]liste;
 	public static Test[]pioche_domino;
