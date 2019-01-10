@@ -53,9 +53,7 @@ public class DominoCSVtoArrayList {
 		 	}
 	 }
 	 
-	 public static void domino_component() {
-		 
-	 }
+	 
 	 
 	
 	// Fonction qui s'occupe de parcourir le fichier CSV et de remplir la liste avec ce qui est lu dans le CSV
