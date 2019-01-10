@@ -174,7 +174,7 @@ public class PlacementDominoJoueur {
 						if (y2 == num3) {
 							running3 = false;							
 						}
-						else if(y2<0 || y2>5) {
+						else if (y2<0 || y2>5) {
 							System.out.println("Ce que vous avez entré ne correspond pas à une colonne du tableau.");
 							break;	
 						}
@@ -187,14 +187,20 @@ public class PlacementDominoJoueur {
 				}
 			}
 			
+			if (Math.abs(x1 - x2) + Math.abs(y1 - y2) == 1) {
 			PlacementDominoJoueur b1 = new PlacementDominoJoueur();
 			b1.setCell(x2, y2, Cell.A);
 			System.out.println(b1);
+			}
+				else if (Math.abs(x1 - x2) + Math.abs(y1 - y2) != 1) {
+				System.out.println("Vous devez entrer deux cases adjacentes");
+				}
+			
 	}
+			
+	
 		 public static void main(String[] args) {
 			PlacementDominoJoueur b = new PlacementDominoJoueur();
-			
-			
 			GameBoard();
 			
 			 /* We put a C at the left corner, because at the beginning each castle of each player
