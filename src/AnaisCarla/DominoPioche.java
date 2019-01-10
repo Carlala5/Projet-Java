@@ -35,7 +35,7 @@ public class DominoPioche {
 		else {
 			Random randomGenerator = new Random();
 
-			Test[]pioche_domino; /* on crée la liste pioche_domino qui aura quatre cases */
+			Test[] pioche_domino; /* on crée la liste pioche_domino qui aura quatre cases */
             pioche_domino = new Test [4]; //On ne connait que la taille du tableau sans connaitre les valeurs
             
             int[] random_numbs = new int[4]; /*  on initialise 4 nombres aléatoires à 0 dans un tableau */

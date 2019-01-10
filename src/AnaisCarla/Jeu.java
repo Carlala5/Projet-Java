@@ -2,22 +2,27 @@ package AnaisCarla;
 
 
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Jeu {
-
-	Map <Integer, Dominos> ListeDomino = new HashMap<Integer, Dominos>();
+	
+	static String csvPath = "/Users/carladeruelle/Desktop/Projet-Java/src/dominos.csv";
+	static Scanner reader = new Scanner(System.in);
+	static ArrayList<Domino> deck = buildDeck();
+	Map <Integer, Domino> ListeDomino = new HashMap<Integer, Domino>();
 	ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>();
-	Scanner reader = new Scanner(System.in);
-	Joueur joueur1;
-	Joueur joueur2;
-	Joueur joueur3;
-	Joueur joueur4;
+	Joueur joueur1 = new Joueur("","",0,1,0);
+	Joueur joueur2 = new Joueur("","",0,2,0);
+	Joueur joueur3 = new Joueur("","",0,3,0);
+	Joueur joueur4 = new Joueur("","",0,4,0);
 	
 public Jeu () {
 	menu();
@@ -31,6 +36,8 @@ public void menu() {
 	
 	switch (nbJoueurs) {
 	case 2 : deuxJoueurs();
+	deck = buildDeck();
+	deck = trimDeck(nbJoueurs,deck);
 	//premierTour(nbJoueurs);
 	break;
 	case 3 : troisJoueurs();
@@ -107,6 +114,7 @@ public ArrayList<Joueur>  troisJoueurs () {
 	entr = reader.next();
 	this.joueur3.setCouleur(entr);
 	listeJoueur.add(joueur3);
+	
 	
 	return listeJoueur;
 }	
@@ -188,14 +196,32 @@ public int tirageJoueur (int nbJoueurs) {
 
 public void premierTour(ArrayList<Joueur> listeJoueur) {
 	ArrayList<Joueur> listeJoueurBis = new ArrayList<Joueur>();
-	ArrayList<DominoCSVtoArrayList.Test> dominoCourant = new ArrayList<DominoCSVtoArrayList.Test>();
+	ArrayList<Domino> dominoCourant = new ArrayList<Domino>();
 	
 	
 	listeJoueurBis = listeJoueur;
 	int nbJoueurs;
 	int j;
+	int count = 0;
 	//int numJoueur = tirageJoueur(nbJoueurs);
-	
+	if(deck.size() == 36) {		
+		do{ 
+			int i = (int) (Math.random() * (deck.size()-count));
+			dominoCourant.add(deck.get(i));
+			deck.remove(i);
+			count++;
+		}while(dominoCourant.size() != 3);
+	}else {
+		do{ 
+			int i = (int) (Math.random() * (deck.size()-count));
+			dominoCourant.add(deck.get(i));
+			deck.remove(i);
+			count++;
+		}while(deck.size() != 4);
+	}
+
+
+
 	do { 
 		nbJoueurs = listeJoueurBis.size(); 
 		j = (int)Math.random()*nbJoueurs;
@@ -219,7 +245,46 @@ public void premierTour(ArrayList<Joueur> listeJoueur) {
 	
 }
 
+public static ArrayList<Domino> buildDeck() {
+	BufferedReader csvReader = null;
 
+	String csvLine;
+	String csvSplitter = ",";
+	ArrayList<Domino> ofck = new ArrayList<Domino>();
+	try {
+		csvReader = new BufferedReader(new FileReader(csvPath));
+		while ((csvLine = csvReader.readLine()) != null) {
+			String[] dominos = csvLine.split(csvSplitter);
+			Domino domino = new Domino(dominos[4], dominos[0], dominos[1], dominos[2], dominos[3], "");
+			ofck.add(domino);
+		}
+	} catch (Exception e) {
+		System.out.println("Une erreur est survenue.");
+	}
+	return ofck;
+}
+
+public static ArrayList<Domino> trimDeck(int nbplay, ArrayList<Domino> deck) {
+	int count = 0;
+	Random rand = new Random();
+	
+	if (nbplay == 2) {
+		while (deck.size() != 24) { 
+			
+			int i = (int) (Math.random() * (48-count));
+			deck.remove(i);
+			count++;
+		}
+	} else if (nbplay == 3) {
+		while (deck.size() != 36) {
+			int i = (int) (Math.random() * (48-count));
+			deck.remove(i);
+			count++;
+		}
+
+	}
+	return deck;
+}
 
 }
 
