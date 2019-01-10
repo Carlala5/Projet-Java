@@ -9,15 +9,15 @@ private String nom;
 private String couleur;
 private int score;
 private int numeroJoueur;
-
+private int plateauJoueur;
 
 //Constructeur par defaut
-public Joueur(String nom, String couleur, int score, int numeroJoueur) {
+public Joueur(String nom, String couleur, int score, int numeroJoueur, int plateauJoueur) {
 	this.nom = nom;
 	this.couleur = couleur;
 	this.score = score;
 	this.numeroJoueur = numeroJoueur;
-	
+	this.plateauJoueur = plateauJoueur;
 }
 //setter = méthode qui permet de definir un seul attribut en particulier (modification en direct) utiliser void
 //getter = méthode qui permet de renvoyer un attribut un attribut en particulier
@@ -53,6 +53,13 @@ public void setNumeroJoueur (int numeroJoueur) {
 
 public int getNumeroJoueur () {
 	return numeroJoueur;
+}
+
+public void setPlateauJoueur ( int plateauJoueur) {
+	this.plateauJoueur = plateauJoueur;
+}
+public int getPlateauJoueur() {
+	return plateauJoueur;
 }
 
 }

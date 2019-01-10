@@ -53,6 +53,10 @@ public class DominoCSVtoArrayList {
 		 	}
 	 }
 	 
+	 public static void domino_component() {
+		 
+	 }
+	 
 	
 	// Fonction qui s'occupe de parcourir le fichier CSV et de remplir la liste avec ce qui est lu dans le CSV
 	 
@@ -85,10 +89,7 @@ public class DominoCSVtoArrayList {
 			
 			}			
 		}			
-	}
-	
-
-	 
+	} 
 		/*
 		 BufferedReader prend qqchose en mémoire. Si il n'y avait pas null, dominoBuffer pourrait prendre 
 		 n'importe quelle valeur de la mémoire. Donc toutes les variables qui jouent avec de la mémoire, on les met à null
