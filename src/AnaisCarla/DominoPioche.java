@@ -18,7 +18,7 @@ public class DominoPioche {
 
 	public static void domino_pioche() {
 
-		//On crée une liste temporaire dans laquelle on stocke notre Game.lite.
+		//On crée une liste temporaire dans laquelle on stocke notre Game.liste.
 		//On va jouer avec cette liste pour ne par avoir de pb
 
 		Test[]temp_liste;
@@ -33,7 +33,6 @@ public class DominoPioche {
 			return;
 		}
 		else {
-
 			Random randomGenerator = new Random();
 
 			Test[]pioche_domino; /* on crée la liste pioche_domino qui aura quatre cases */
@@ -87,24 +86,24 @@ public class DominoPioche {
 					break;
 			}
 			
-			Arrays.sort(random_numbs);
+			
 			
             /* On va ajouter a notre liste de 4 dominos nos 4 tirages
              * temp_liste[random_numbs[0]] ---> on prend le domino numéro (random_numbs[O]) qui est le premier tirage.
              */
-
+			Arrays.sort(random_numbs);
             pioche_domino[0] = temp_liste[random_numbs[0]];
             pioche_domino[1] = temp_liste[random_numbs[1]];
             pioche_domino[2] = temp_liste[random_numbs[2]];
             pioche_domino[3] = temp_liste[random_numbs[3]];
 
+            
             /* Je print la liste des dominos piochés pour etre sur */
             DominoCSVtoArrayList.print_list_domino(pioche_domino);
+            
 		}
 
 	}
-
-
 }
 
 

@@ -13,14 +13,13 @@ public class Game {
 		liste = new Test [48];
 		DominoCSVtoArrayList.parse_csv_file(liste);
 		
+		DominoCSVtoArrayList.melangerDominos(liste);
 		
 		DominoCSVtoArrayList.print_list_domino(liste);
 		
 		System.out.println("Les dominos qui ont été piochés sont :");
+		
 		DominoPioche.domino_pioche();
-		
-		
-	
 
 }
 }

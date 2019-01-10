@@ -4,7 +4,8 @@ package AnaisCarla;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 
 public class DominoCSVtoArrayList {
@@ -39,7 +40,6 @@ public class DominoCSVtoArrayList {
 	
 	
 	 public static void print_list_domino (Test[] liste) {
-		 
 		 	int i = 0;
 		 	if (liste == null) {
 		 		System.out.println ("Liste null.");
@@ -52,9 +52,6 @@ public class DominoCSVtoArrayList {
 		 		}
 		 	}
 	 }
-	 
-	 
-	 
 	
 	// Fonction qui s'occupe de parcourir le fichier CSV et de remplir la liste avec ce qui est lu dans le CSV
 	 
@@ -93,4 +90,8 @@ public class DominoCSVtoArrayList {
 		 n'importe quelle valeur de la mémoire. Donc toutes les variables qui jouent avec de la mémoire, on les met à null
 		 */
 
+	public static void melangerDominos(Test [] liste) {
+		Collections.shuffle(Arrays.asList(liste));
+	}
+	
 }
