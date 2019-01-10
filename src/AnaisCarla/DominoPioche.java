@@ -16,27 +16,27 @@ import AnaisCarla.DominoCSVtoArrayList.Test;
 
 public class DominoPioche {
 
-	public static void domino_pioche() {
+	public static ArrayList<Domino> domino_pioche(ArrayList<Domino> listDom) {
 
 		//On crée une liste temporaire dans laquelle on stocke notre Game.liste.
 		//On va jouer avec cette liste pour ne par avoir de pb
 
-		Test[]temp_liste;
+		// Test[]temp_liste;
 
-		temp_liste = Game.liste;
+		// temp_liste = Game.liste;
 
 
 		int i = 0;
 
-		if (Game.liste == null) {
+		if (listDom == null) {
 			System.out.println ("Liste null.");
-			return;
+			return new ArrayList<Domino>();
 		}
 		else {
 			Random randomGenerator = new Random();
 
-			Test[]pioche_domino; /* on crée la liste pioche_domino qui aura quatre cases */
-            pioche_domino = new Test [4]; //On ne connait que la taille du tableau sans connaitre les valeurs
+			ArrayList<Domino> pioche_domino = new ArrayList<Domino>(); /* on crée la liste pioche_domino qui aura quatre cases */
+            // pioche_domino = new Test [4]; //On ne connait que la taille du tableau sans connaitre les valeurs
             
             int[] random_numbs = new int[4]; /*  on initialise 4 nombres aléatoires à 0 dans un tableau */
             random_numbs[0] = 0;
@@ -92,14 +92,20 @@ public class DominoPioche {
              * temp_liste[random_numbs[0]] ---> on prend le domino numéro (random_numbs[O]) qui est le premier tirage.
              */
 			Arrays.sort(random_numbs);
-            pioche_domino[0] = temp_liste[random_numbs[0]];
-            pioche_domino[1] = temp_liste[random_numbs[1]];
-            pioche_domino[2] = temp_liste[random_numbs[2]];
-            pioche_domino[3] = temp_liste[random_numbs[3]];
-
+			
+			
+			
+//            pioche_domino[0] = temp_liste[random_numbs[0]];
+//            pioche_domino[1] = temp_liste[random_numbs[1]];
+//            pioche_domino[2] = temp_liste[random_numbs[2]];
+//            pioche_domino[3] = temp_liste[random_numbs[3]];
+			
+			pioche_domino.add(listDom.get(random_numbs[0]));
+			pioche_domino.add(listDom.get(random_numbs[1]));
+			pioche_domino.add(listDom.get(random_numbs[2]));
+			pioche_domino.add(listDom.get(random_numbs[3]));
             
-            /* Je print la liste des dominos piochés pour etre sur */
-            DominoCSVtoArrayList.print_list_domino(pioche_domino);
+            return pioche_domino;
             
 		}
 
