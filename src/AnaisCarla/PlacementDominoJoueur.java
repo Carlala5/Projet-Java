@@ -16,6 +16,7 @@ public class PlacementDominoJoueur {
  * Création du plateau
  * 	
  */
+	
 	public enum Cell {O,C,CHA,FOR,MER,PRA,MIN,MON,Z, A}; 
 	/* O for Empty, C for Castle, CHA for Champ, FOR for Foret, PRA for Prairie, MIN for Mine, MON for Montagne Z to test
 	 * 

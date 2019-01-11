@@ -3,7 +3,7 @@ package AnaisCarla;
 public class MainClass {
 	
 	public static void main(String[] args) {
-		Joueur joueur = new Joueur();
+		Jeu jeu = new Jeu();
 	}
 		
 		

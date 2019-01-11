@@ -1,6 +1,5 @@
 package AnaisCarla;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,9 +8,6 @@ import java.util.Random;
 import com.sun.xml.internal.bind.v2.model.util.ArrayInfoUtil;
 
 import AnaisCarla.DominoCSVtoArrayList.Test;
-
-
-
 
 
 public class DominoPioche {
@@ -28,16 +24,23 @@ public class DominoPioche {
 
 		int i = 0;
 
-		if (listDom == null) {
+		if (listDom == null) { //condition qui verifie si la liste n'est pas egale a null
 			System.out.println ("Liste null.");
 			return new ArrayList<Domino>();
 		}
 		else {
 			Random randomGenerator = new Random();
 
-			ArrayList<Domino> pioche_domino = new ArrayList<Domino>(); /* on crée la liste pioche_domino qui aura quatre cases */
+			/* On crée une liste de dominos qui s'appelle pioche_domino */
+			
+			ArrayList<Domino> pioche_domino = new ArrayList<Domino>(); 
+			
+			/* on crée la liste pioche_domino qui aura quatre cases */
             // pioche_domino = new Test [4]; //On ne connait que la taille du tableau sans connaitre les valeurs
-            
+
+			//Test[] pioche_domino; /* on crée la liste pioche_domino qui aura quatre cases */
+            //pioche_domino = new Test [4]; //On ne connait que la taille du tableau sans connaitre les valeurs
+        
             int[] random_numbs = new int[4]; /*  on initialise 4 nombres aléatoires à 0 dans un tableau */
             random_numbs[0] = 0;
             random_numbs[1] = 0;
@@ -47,7 +50,9 @@ public class DominoPioche {
             int same_random_number = 0;
 
 			while (true) { 
-				/* retourne true tant que le numéro aléatoire tiré est égal un numéro qui est déjà dans notre tableau de nombres
+				
+				/* retourne true tant que le numéro aléatoire tiré est égal 
+				 * un numéro qui est déjà dans notre tableau de nombres
 				 * aléatoires (cad que same_random_number est égal à 1).
 				 * */
 
@@ -60,13 +65,14 @@ public class DominoPioche {
                 	
                     /* si par hasard le numéro aleatoire a déjà été tiré 
                      * on va sortir et refaire un nombre aléatoire avec le "continue" */
+                	
                     if (random_number == random_numbs[j]) {
                         same_random_number = 1;
                         break;
                     }
                 }
 
-                /* condition pour tester si le nombre aléatoire tiré a déjà été tiré ou pas et si oui et bien on re fait un nombre aléatoire jusqu'a en avoir un différent */
+                /* condition pour tester si le nombre aléatoire tiré a déjà été tiré ou pas et si oui et bien on refait un nombre aléatoire jusqu'a en avoir un différent */
                 if (same_random_number == 1) {
                     same_random_number = 0;
                     continue;
@@ -91,7 +97,7 @@ public class DominoPioche {
             /* On va ajouter a notre liste de 4 dominos nos 4 tirages
              * temp_liste[random_numbs[0]] ---> on prend le domino numéro (random_numbs[O]) qui est le premier tirage.
              */
-			Arrays.sort(random_numbs);
+			Arrays.sort(random_numbs); // trie nos random_numbs par ordre croissant
 			
 			
 			
