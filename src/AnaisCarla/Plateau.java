@@ -38,42 +38,44 @@ public class Plateau {
 		Scanner scan = new Scanner(System.in);
 		String face1 = domino.getType1();
 		String face2 = domino.getType2();
-		if (typeTour == 1) {
-			System.out.println("\nVeuillez entrer la ligne de la premiere case de votre domino (entre 0 et 4) ");
-			System.out.println("Celle-ci doit se trouver à côté de votre château.");
-		}else {
-			System.out.println("\nVeuillez entrer la ligne de la premiere case de votre domino (entre 0 et 4) ");
-		}
-		int x1 = scan.nextInt();
-		System.out.println("\nVeuillez entrer la colonne de la premiere case de votre domino (entre 0 et 4) ");
-		System.out.println("Elle ne doit pas se trouver sur le château !");
-		int y1 = scan.nextInt();
-		boolean cond;
+		int x1;
+		int y1;
+		boolean condition;
 		do {
+			condition = false;
+			if (typeTour == 1) {
+				System.out.println("\nVeuillez entrer la ligne de la premiere case de votre domino (entre 0 et 4) ");
+				System.out.println("Celle-ci doit se trouver à côté de votre château.");
+			} else {
+				System.out.println("\nVeuillez entrer la ligne de la premiere case de votre domino (entre 0 et 4) ");
+			}
+			x1 = scan.nextInt();
+			System.out.println("\nVeuillez entrer la colonne de la premiere case de votre domino (entre 0 et 4) ");
+			System.out.println("Elle ne doit pas se trouver sur le château !");
+			y1 = scan.nextInt();
 			if ((x1 < 0) || (x1 > 4) || (y1 < 0) || (y1 > 4)) {
 				System.out.println("Une ou les coordonnées entrées ne sont pas valides, recommencez.");
-				cond = false;
+				condition = false;
 			} else {
 				if (typeTour == 1) {
-					boolean cond1;
-					do {
 						if (x1 == 0 && y1 == 0) {
-							System.out.println("Vous devez placer votre premier domino à côté de votre château ! Recommencez.");
-							cond = false;
-							cond1 = false;
-						} else {
+							System.out.println(
+									"Vous devez placer votre premier domino à côté de votre château, et non dessus ! Recommencez.");
+							condition = false;
+						} else if (Math.abs(0 - x1) + Math.abs(0 - y1) == 1) {
 							this.plateau[x1][y1] = face1;
-							cond = true;
-							cond1 = true;
+							condition = true;
+						} else {
+							System.out.println("Ces coordonnées ne sont pas valides, recommencez !");
+							condition = false;
 						}
-					} while (cond1 = false);
-					
+
 				} else if (typeTour == 2) {
 					this.plateau[x1][y1] = face1;
-					cond = true;
+					condition = true;
 				}
 			}
-		} while (cond = false);
+		}while(condition == false);
 		afficherPlateau();
 		System.out.println("\nVeuillez entrer la ligne de la deuxième case de votre domino (entre 0 et 4) ");
 		int x2 = scan.nextInt();

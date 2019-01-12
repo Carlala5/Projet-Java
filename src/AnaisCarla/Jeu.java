@@ -139,7 +139,7 @@ public class Jeu {
 		this.joueur3.setScore(0);
 		this.joueur3.setNumeroJoueur(3);
 		Plateau plateau3 = new Plateau();
-		this.joueur1.setPlateau(plateau3);
+		this.joueur3.setPlateau(plateau3);
 		ArrayList<Domino> domJoueur3 = new ArrayList<Domino>();
 		this.joueur3.setDomJoueur(domJoueur3);
 		System.out.println("Joueur3, choisissez maintenant votre couleur (rose, jaune, vert ou bleu ) :");
@@ -174,7 +174,7 @@ public class Jeu {
 		this.joueur2.setScore(0);
 		this.joueur2.setNumeroJoueur(2);
 		Plateau plateau2 = new Plateau();
-		this.joueur1.setPlateau(plateau2);
+		this.joueur2.setPlateau(plateau2);
 		ArrayList<Domino> domJoueur2 = new ArrayList<Domino>();
 		this.joueur2.setDomJoueur(domJoueur2);
 		System.out.println("Joueur2, choisissez maintenant votre couleur (rose, jaune, vert ou bleu ) :");
@@ -188,7 +188,7 @@ public class Jeu {
 		this.joueur3.setScore(0);
 		this.joueur3.setNumeroJoueur(3);
 		Plateau plateau3 = new Plateau();
-		this.joueur1.setPlateau(plateau3);
+		this.joueur3.setPlateau(plateau3);
 		ArrayList<Domino> domJoueur3 = new ArrayList<Domino>();
 		this.joueur3.setDomJoueur(domJoueur3);
 		System.out.println("Joueur3, choisissez maintenant votre couleur (rose, jaune, vert ou bleu ) :");
@@ -202,7 +202,7 @@ public class Jeu {
 		this.joueur4.setScore(0);
 		this.joueur4.setNumeroJoueur(4);
 		Plateau plateau4 = new Plateau();
-		this.joueur1.setPlateau(plateau4);
+		this.joueur4.setPlateau(plateau4);
 		ArrayList<Domino> domJoueur4 = new ArrayList<Domino>();
 		this.joueur4.setDomJoueur(domJoueur4);
 		System.out.println("Joueur4, choisissez maintenant votre couleur (rose, jaune, vert ou bleu ) :");
