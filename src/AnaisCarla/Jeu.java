@@ -439,7 +439,7 @@ public class Jeu {
 				System.out.println("Le roi de la couleur " + couleurRoi + " doit jouer !");
 				System.out.println("\n Veuillez choisir un de ces dominos : \n");
 				for (int i = 0; i < dominoCourant.size(); i++) {
-					System.out.println(affNumDomino.get(i));
+					System.out.println(affNumDomino.get(i)+ ", Face 1 : "+retourneDomino(dominoCourant, affNumDomino.get(i)).getType1()+ ", " +retourneDomino(dominoCourant, affNumDomino.get(i)).getNbCouronne1() + " | Face 2 : " +retourneDomino(dominoCourant, affNumDomino.get(i)).getType2()+ ", " +retourneDomino(dominoCourant, affNumDomino.get(i)).getNbCouronne2());
 				}
 				boolean cond; // condition
 				do {

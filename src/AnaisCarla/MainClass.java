@@ -4,6 +4,10 @@ public class MainClass {
 
 	public static void main(String[] args) {
 		Jeu jeu = new Jeu();
+		
+	// FAIRE : UNE OPTION POUR SI ON NE PEUT PAS PLACER UN DOMINO ?????
+		
+		
 	}
 
 //		Jeu monJeu = new Jeu();
