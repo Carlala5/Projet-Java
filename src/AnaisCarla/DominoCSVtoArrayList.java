@@ -21,6 +21,7 @@ public class DominoCSVtoArrayList {
 	    private String Type2;
 	    
 	    private int NumeroDomino;
+	  
 	    Domino d;
 	    
 	    
@@ -68,12 +69,12 @@ public class DominoCSVtoArrayList {
 	
 	// Fonction qui s'occupe de parcourir le fichier CSV et de remplir la liste avec ce qui est lu dans le CSV
 	 
-	public static ArrayList<Domino> parse_csv_file () {
+	public static ArrayList<Domino> parse_csv_file () { // lire le fichier csv ligne par ligne, chaque ligne va etre stockee dans dominoLine
 		BufferedReader dominoBuffer = null;
 		ArrayList<Domino> listDom = new ArrayList<Domino>();
 		try {
 			String dominoLine;
-			dominoBuffer = new BufferedReader(new FileReader("src/dominos.csv")); //lit le fichier CSV
+			dominoBuffer = new BufferedReader(new FileReader("/Users/carladeruelle/Desktop/Projet-Java/src/dominos.csv")); //lit le fichier CSV
 			int count = 0;
 			int i = 0;
 			
@@ -107,7 +108,7 @@ public class DominoCSVtoArrayList {
 		return listDom;
 	} 
 
-		private static Domino createDomino(String dominoLine) {
+		private static Domino createDomino(String dominoLine) { // creer un domino
 			
 			String[] splitData = dominoLine.split("\\s*,\\s*"); //splitData est une liste de string
 		      int NbCouronne1 = Integer.parseInt(splitData[0]);
@@ -115,7 +116,7 @@ public class DominoCSVtoArrayList {
 		      int NbCouronne2 = Integer.parseInt(splitData[2]);
 		      String Type2 = splitData[3];
 		      int NumeroDomino = Integer.parseInt(splitData[4]);
-		      Domino d = new Domino(NbCouronne1, NbCouronne2, Type1, Type2, NumeroDomino );
+		      Domino d = new Domino (NbCouronne1,Type1, NbCouronne2,Type2,NumeroDomino);
 		 	
 		 	  return d;
 	}
