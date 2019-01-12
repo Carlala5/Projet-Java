@@ -36,36 +36,36 @@ public Domino(int nbCo1, String t1, int nbCo2 , String t2,int num) {
 
 	/** GETTERS **/
 
-public int getNbCouronne1() {
-	return this.NbCouronne1;
-}
+	public int getNbCouronne1() {
+		return this.NbCouronne1;
+	}
 
-public int getNbCouronne2() {
-	return this.NbCouronne2;
-}
+	public int getNbCouronne2() {
+		return this.NbCouronne2;
+	}
 
-public String getType1() {
+	public String getType1() {
 		return this.Type1;
 	}
 
-public String getType2() {
-	return this.Type2;
-}
+	public String getType2() {
+		return this.Type2;
+	}
 
 
-public int getNumeroDomino() {
-	return this.NumeroDomino;
-}
+	public int getNumeroDomino() {
+		return this.NumeroDomino;
+	}
 
-public void setCoordonneesGeneral() {
-	
-	
-}
-public void setCoordonnees1() {
-	
-}
-public void setCoordonnees2() {
-	
-}
+//public void setCoordonneesGeneral() {
+//	
+//	
+//}
+//public void setCoordonnees1() {
+//	
+//}
+//public void setCoordonnees2() {
+//	
+//}
 
 }

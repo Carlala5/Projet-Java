@@ -17,7 +17,7 @@ import java.util.Collections;
 
 public class Jeu {
 
-	static String csvPath = "/Users/carladeruelle/Desktop/Projet-Java/src/dominos.csv";
+	static String csvPath = "src/dominos.csv";
 	static Scanner reader = new Scanner(System.in);
 
 	ArrayList<Domino> listDom = DominoCSVtoArrayList.parse_csv_file();
@@ -36,7 +36,7 @@ public class Jeu {
 
 	}
 
-	public void menu() {
+	public void menu() { //menu qui demande le nombre de joueurs
 		System.out.println("Combien de joueurs êtes-vous?");
 		int nbJoueurs = reader.nextInt();
 
@@ -61,10 +61,10 @@ public class Jeu {
 		default:
 			System.out.println("Vous devez être entre 2 et 4 joueurs");
 			break;
-
 		}
-
 	}
+
+	/* 2 JOUEURS */
 
 	public ArrayList<Joueur> deuxJoueurs() {
 		String entr = "";
@@ -101,6 +101,8 @@ public class Jeu {
 		return listeJoueur;
 
 	}
+
+	/* 3 JOUEURS */
 
 	public ArrayList<Joueur> troisJoueurs() {
 		String entr = "";
@@ -149,6 +151,8 @@ public class Jeu {
 
 		return listeJoueur;
 	}
+
+	/* 4 JOUEURS */
 
 	public ArrayList<Joueur> quatreJoueurs() {
 
@@ -213,187 +217,228 @@ public class Jeu {
 		return listeJoueur;
 	}
 
-	public int tirageJoueur(int nbJoueurs) {
-		// appel aléatoire d'un joueur pour tirer au sort les rois:
-
-		int i = (int) Math.random() * nbJoueurs;
-		if (i == joueur1.getNumeroJoueur()) {
-			System.out.println(joueur1.getNom() + " vous avez été sélectionné(e) pour tirer les rois au sort");
-			return i;
-		} else if (i == joueur2.getNumeroJoueur()) {
-			System.out.println(joueur2.getNom() + " vous avez été sélectionné(e) pour tirer les rois au sort");
-			return i;
-		} else if (i == joueur3.getNumeroJoueur()) {
-			System.out.println(joueur3.getNom() + " vous avez été sélectionné(e) pour tirer les rois au sort");
-			return i;
-		} else if (i == joueur4.getNumeroJoueur()) {
-			System.out.println(joueur4.getNom() + " vous avez été sélectionné(e) pour tirer les rois au sort");
-			return i;
-		}
-		return i;
-	}
-
-	// appuyer sur entrée pour générer un roi au hasard (pour la suite)
+	/*
+	 * Permet de generer la liste de dominos dans laquelle on va pouvoir piocher
+	 */
 
 	public static ArrayList<Domino> enleveDomino(int nbJoueurs, ArrayList<Domino> listDom) {
 		int count = 0;
 
 		if (nbJoueurs == 2) {
+
+			/*
+			 * Si le nombre de joueurs est egal a 2 On retire des dominos aleatoirement a
+			 * listDom tant que listDom n est pas egal a 24
+			 */
+
 			while (listDom.size() != 24) {
 
-				int i = (int) (Math.random() * (47 - count));
-				listDom.remove(i);
-				count++;
+				/*
+				 * Math.random() permet de renvoyer un nombre aleatoire entre [0,1[ Faire
+				 * Math.random() * (47 - count) permet de couvrir un autre intervalle En premier
+				 * count = 0 Math.random() * (47) va prendre un nombre aleatoire entre 0 et 48
+				 */
 
+				int i = (int) (Math.random() * (47 - count));
+
+				listDom.remove(i); // on retire un domino et listeDom se reduit petit a petit
+				count++; // incrementation
 			}
+
+			/*
+			 * Sinon si le nombre de joueurs est egal a 3 On retire des dominos
+			 * aleatoirement a listDom tant que listDom n est pas egal a 36
+			 */
 
 		} else if (nbJoueurs == 3) {
 
 			while (listDom.size() != 36) {
 				int i = (int) (Math.random() * (47 - count));
-				listDom.remove(i);
-				count++;
-
+				listDom.remove(i); // on retire un domino et listDom se reduit petit a petit
+				count++; // incrementation
 			}
-
 		}
-		/*
-		 * for (int i = 0; i<listDom.size(); i++) {
-		 * System.out.println(listDom.get(i).getNumeroDomino()); }
-		 */
 		return listDom;
-
 	}
 
-	/*
-	 * PIOCHE
-	 */
 
 	public void premierTour(ArrayList<Joueur> listeJoueur, int nbJoueurs) {
+
+		/*
+		 * On cree une listeJoueurBis pour pouvoir manipuler les joueurs. Ainsi,
+		 * listeJoueurs n est pas modifiee
+		 */
 		ArrayList<Joueur> listeJoueurBis = new ArrayList<Joueur>();
-		ArrayList<Domino> dominoCourant = new ArrayList<Domino>();
+		ArrayList<Domino> dominoCourant = new ArrayList<Domino>(); // dominoCourant stocke les dominos qui vont etre pioches
 
-		listeJoueurBis.addAll(listeJoueur); // on cree une listeJoueurBis pour pouvoir manipuler les joueurs (sinon dans
-		Collections.shuffle(listeJoueurBis);									// Tour général listeJoueur bugg)
+		listeJoueurBis.addAll(listeJoueur);
+		Collections.shuffle(listeJoueurBis);
+		
+		
+		/** Generation de la pioche de dominos **/
+		
+		/*
+		 * En fonction de la taille de la liste listDom (donc en fonction du nombre de joueurs)
+		 * on prend un nombre aleatoire de listDom, on l ajoute a dominoCourant et on l enleve de listDom 
+		 * pour pas qu il soit pioche une seconde fois. On fait cela tant que notre pioche n a pas le bon 
+		 * nombre de dominos souhaite
+		 */
 		int count = 0;
-		// int numJoueur = tirageJoueur(nbJoueurs);
-		if (listDom.size() == 36) {
+		if (listDom.size() == 36) { 
 			do {
-				int i = (int) (Math.random() * (listDom.size() - count)); // prend un nb aleatoire en fct de la taille
-																			// de la liste de domino
+				int i = (int) (Math.random() * (listDom.size() - count)); // prend un domino aleatoire de listDom																
+				dominoCourant.add(listDom.get(i)); // ajout du domino aleatoire dans dominoCourant
+				listDom.remove(i); // retrait du domino aleatoire de listDom
+				count++; //incrementation
 
-				dominoCourant.add(listDom.get(i)); // on met le nb aleatoire dans la liste domino courant
-				listDom.remove(i); // et on l'enlève de listDom pr pas piocher le même numéro
-				count++;
+			} while (dominoCourant.size() != 3); // on boucle tant que la pioche dominoCourant n est pas egale a 3
 
-			} while (dominoCourant.size() != 3); // on continue tant que la pioche dominoCourant n'est pas egale a 3
-
-		} else if (listDom.size() == 48 || listDom.size() == 24) { // pioche pour 2 ou 4 joueurs
+		} else if (listDom.size() == 48 || listDom.size() == 24) { // pioche pour 2 ou 4 joueurs (meme nb de dominos dans la pioche), meme principe
 			do {
 				int i = (int) (Math.random() * (listDom.size() - count));
 				dominoCourant.add(listDom.get(i));
 				listDom.remove(i);
-				count++;
+				count++; //incrementation
 
-			} while (dominoCourant.size() != 4);
-
+			} while (dominoCourant.size() != 4); // on boucle tant que la pioche dominoCourant n est pas egale a 4
 		}
-		ArrayList<Integer> affNumDomino = new ArrayList<Integer>(); // liste temporaire qui stocke les numeros des
-																	// dominos piochés pour les trier ensuite
+		
+		
+		ArrayList<Integer> affNumDomino = new ArrayList<Integer>(); 
+		/*
+		 *  affNumDomino est une liste temporaire a laquelle 
+		 *  on ajoute les numeros des dominos qui sont dans dominoCourant
+		 *  pour pouvoir trier les numeros de dominos par ordre croissant et les piocher ensuite
+		 */
+		
 		for (int i = 0; i < dominoCourant.size(); i++) {
 			affNumDomino.add(dominoCourant.get(i).getNumeroDomino());
 		}
-		Collections.sort(affNumDomino); // tri les dominos
-		
-		
+		Collections.sort(affNumDomino); // tri les numeros de domino de la liste affNumDomino par ordre croissant
+
 		do {
-			int nbJoueursBis = listeJoueurBis.size();
+			int nbJoueursBis = listeJoueurBis.size(); // nbJoueurBis est egal a la taille de la liste listeJoueurBis donc au nombre de joueurs
 			int premierTour = 1;
-			int j = (int) (Math.random()*nbJoueursBis);
-			String couleurRoi = listeJoueurBis.get(j).getCouleur();
+			int j = (int) (Math.random() * nbJoueursBis); // tirage au hasard d un entier entre 0 et le nombre de joueurs
+			String couleurRoi = listeJoueurBis.get(j).getCouleur(); // on veut la couleur du roi du joueur dont le numero a ete tire au hasard
+			
 			System.out.println("Le roi de la couleur " + couleurRoi + " doit jouer !");
 			System.out.println("\n Veuillez choisir un de ces dominos : \n");
 
-			for (int i = 0; i < dominoCourant.size(); i++) {
-				System.out.println(affNumDomino.get(i));
+			for (int i = 0; i < dominoCourant.size(); i++) { // Boucle for qui permet d afficher les numeros de dominos de la pioche
+			/******************** pourquoi mettre dominoCourant.size() et pas affNumDomino.size() ?? ********************/
+				
+				System.out.println(affNumDomino.get(i)); 
 			}
-			boolean cond; // cond veut dire condition
+			
+			boolean cond; // condition
 			do {
-
-				int reponse = reader.nextInt();
-				if (affNumDomino.contains(reponse)) {
-					listeJoueurBis.get(j).setDomJoueurElement(retourneDomino(dominoCourant, reponse));
-					// ajouter a la liste de dominos du joueur le domino qu'il vient de choisir
-					System.out.println("Le roi " + couleurRoi + " a choisi le domino numéro " + reponse);
+				int reponse = reader.nextInt(); // lecture de la reponse
+				
+				if (affNumDomino.contains(reponse)) { // si la reponse de l utilisateur est contenue dans la liste de numeros de dominos					
+					listeJoueurBis.get(j).setDomJoueurElement(retourneDomino(dominoCourant, reponse)); // ajoute a la liste de dominos du joueur le domino qu'il vient de choisir
+					System.out.println("Le roi " + couleurRoi + " a choisi le domino numéro " + reponse); // rappelle au joueur quel domino il vient de choisir
 					System.out.println("Le domino que vous devez placer a pour terrains : "
 							+ retourneDomino(dominoCourant, reponse).getType1() + " , "
-							+ retourneDomino(dominoCourant, reponse).getType2());
-					listeJoueurBis.get(j).getPlateau().afficherPlateau();
-					listeJoueurBis.get(j).getPlateau().placerDomino(retourneDomino(dominoCourant, reponse), premierTour);
-					System.out.println("Voici le plateau de " + listeJoueurBis.get(j).getNom() + " :");
-					listeJoueurBis.get(j).getPlateau().afficherPlateau();
+							+ retourneDomino(dominoCourant, reponse).getType2()); // dit au joueur les types de terrains que possede son domino
+					listeJoueurBis.get(j).getPlateau().afficherPlateau(); // affiche le plateau initial au joueur pour qu'il puisse choisir ou placer son domino
+					listeJoueurBis.get(j).getPlateau().placerDomino(retourneDomino(dominoCourant, reponse),
+							premierTour); // place le domino a l endroit ou le joueur a dit de le placer
+					System.out.println("Voici le plateau de " + listeJoueurBis.get(j).getNom() + " :"); // pour dire a qui appartient le plateau qui va etre affiche
+					listeJoueurBis.get(j).getPlateau().afficherPlateau(); // affiche le plateau du joueur avec les dominos poses
+					
 					dominoCourant.remove(dominoCourant.indexOf(retourneDomino(dominoCourant, reponse)));
 					affNumDomino.remove(affNumDomino.indexOf(reponse));
 
 					cond = true;
 				} else {
 					System.out.println("Ce numéro de domino ne figure pas sur la liste, recommencez.");
+//					System.out.println("Le roi de la couleur " + couleurRoi + " doit jouer !");
+//					System.out.println("\n Veuillez choisir un de ces dominos : \n");
+//
+//					for (int i = 0; i < dominoCourant.size(); i++) { // Boucle for qui permet d afficher les numeros de dominos de la pioche
+//					/******************** pourquoi mettre dominoCourant.size() et pas affNumDomino.size() ?? ********************/
+//						
+//						System.out.println(affNumDomino.get(i)); 
+//					}
+					
 					cond = false;
 				}
-			} while (cond = false);
+			} while (cond = false); //je pense qu'il faut mettre true...
 
 			listeJoueurBis.remove(j);
-		} while (!listeJoueurBis.isEmpty());
-	}
+		} while (!listeJoueurBis.isEmpty()); // faire ces operations tant que la liste tous les joueurs n ont pas joue
+		
+	}// fin du premierTour
 
 	public void tourGeneral(ArrayList<Joueur> listeJoueur, int nbJoueurs) {
+		
+		/*
+		 * On cree une listeJoueurBis pour pouvoir manipuler les joueurs. Ainsi,
+		 * listeJoueurs n est pas modifiee
+		 */
+		
 		ArrayList<Joueur> listeJoueurBis = new ArrayList<Joueur>();
 		ArrayList<Domino> dominoCourant = new ArrayList<Domino>();
 
 		do {
-			listeJoueurBis.addAll(listeJoueur);// on cree une listeJoueurBis pour pouvoir manipuler les joueurs (sinon dans
+			listeJoueurBis.addAll(listeJoueur);												
 			System.out.println(listeJoueurBis);
-							// Tour général listeJoueur bugg)
+			
+			
+			/** Generation de la pioche de dominos **/
+			
+			/*
+			 * En fonction de la taille de la liste listDom (donc en fonction du nombre de joueurs)
+			 * on prend un nombre aleatoire de listDom, on l ajoute a dominoCourant et on l enleve de listDom 
+			 * pour pas qu il soit pioche une seconde fois. On fait cela tant que notre pioche n a pas le bon 
+			 * nombre de dominos souhaite
+			 */
+			
 			int count = 0;
 			if (nbJoueurs == 3) {
 				do {
-					int i = (int) (Math.random() * (listDom.size() - count)); // prend un nb aleatoire en fct de la
-																				// taille de la liste de domino
-					dominoCourant.add(listDom.get(i)); // on met le nb aleatoire dans la liste domino courant
-					listDom.remove(i); // et on l'enlève de listDom pr pas piocher le même numéro
-					count++;
+					int i = (int) (Math.random() * (listDom.size() - count)); // prend un domino aleatoire de listDom																					
+					dominoCourant.add(listDom.get(i)); // ajout du domino aleatoire dans dominoCourant
+					listDom.remove(i); // retrait du domino aleatoire de listDom
+					count++; // incrementation
 
-				} while (dominoCourant.size() != 3); // on continue tant que la pioche dominoCourant n'est pas egale a 3
+				} while (dominoCourant.size() != 3); // on boucle tant que la pioche dominoCourant n est pas egale a 3
 
-			} else if (nbJoueurs == 2 || nbJoueurs == 4) { // pioche pour 2 ou 4 joueurs
+			} else if (nbJoueurs == 2 || nbJoueurs == 4) { // pioche pour 2 ou 4 joueurs (meme nb de dominos dans la pioche), meme principe
 				do {
 					int i = (int) (Math.random() * (listDom.size() - count));
 					dominoCourant.add(listDom.get(i));
 					listDom.remove(i);
-					count++;
+					count++; // incrementation
 
-				} while (dominoCourant.size() != 4);
+				} while (dominoCourant.size() != 4); // on boucle tant que la pioche dominoCourant n est pas egale a 4
 
 			}
 
-			ArrayList<Integer> affNumDomino = new ArrayList<Integer>(); // liste temporaire qui stocke les numeros des
-																		// dominos piochés pour les trier ensuite
+			ArrayList<Integer> affNumDomino = new ArrayList<Integer>(); 
+			/*
+			 *  affNumDomino est une liste temporaire a laquelle 
+			 *  on ajoute les numeros des dominos qui sont dans dominoCourant
+			 *  pour pouvoir trier les numeros de dominos par ordre croissant et les piocher ensuite
+			 */			
+			
 			for (int i = 0; i < dominoCourant.size(); i++) {
 				affNumDomino.add(dominoCourant.get(i).getNumeroDomino());
 			}
-			Collections.sort(affNumDomino); // tri les dominos
-			
+			Collections.sort(affNumDomino); // tri les numeros de domino de la liste affNumDomino par ordre croissant
+
 			Joueur premierJoueur = null;
-			for (Joueur joueur: listeJoueurBis) {
-				if (premierJoueur == null || premierJoueur.getSmallestDomino().getNumeroDomino() > joueur.getSmallestDomino().getNumeroDomino()) {
+			for (Joueur joueur : listeJoueurBis) {
+				if (premierJoueur == null || premierJoueur.getSmallestDomino().getNumeroDomino() > joueur
+						.getSmallestDomino().getNumeroDomino()) {
 					premierJoueur = joueur;
 
 				}
 			}
-			
+
 			listeJoueurBis.remove(premierJoueur);
 			listeJoueurBis.add(0, premierJoueur);
-
 
 			do {
 				int nbJoueursBis = listeJoueurBis.size();
@@ -404,28 +449,28 @@ public class Jeu {
 				for (int i = 0; i < dominoCourant.size(); i++) {
 					System.out.println(affNumDomino.get(i));
 				}
-				boolean cond; // cond veut dire condition
+				boolean cond; // condition
 				do {
-
-					int reponse = reader.nextInt();
-					if (affNumDomino.contains(reponse)) {
-						listeJoueurBis.get(0).setDomJoueurElement(retourneDomino(dominoCourant, reponse));
-						// ajouter a la liste de dominos du joueur le domino qu'il vient de choisir
-						System.out.println("Le roi " + couleurRoi + " a choisi le domino numéro " + reponse);
-						System.out.println("Le domino que vous devez placer a pour terrains : "
+					int reponse = reader.nextInt(); // lecture de la reponse
+					if (affNumDomino.contains(reponse)) { // si la reponse de l utilisateur est contenue dans la liste de numeros de dominos
+						listeJoueurBis.get(0).setDomJoueurElement(retourneDomino(dominoCourant, reponse)); // ajoute a la liste de dominos du joueur le domino qu'il vient de choisir
+						System.out.println("Le roi " + couleurRoi + " a choisi le domino numéro " + reponse); // rappelle au joueur quel domino il vient de choisir
+						System.out.println("Le domino que vous devez placer a pour terrains : " 
 								+ retourneDomino(dominoCourant, reponse).getType1() + " , "
-								+ retourneDomino(dominoCourant, reponse).getType2());
-						
-						listeJoueurBis.get(0).getPlateau().afficherPlateau();
-						listeJoueurBis.get(0).getPlateau().placerDomino(retourneDomino(dominoCourant, reponse), tourGeneral);
-						System.out.println("Voici le plateau de " + listeJoueurBis.get(0).getNom() + " :");
-						listeJoueurBis.get(0).getPlateau().afficherPlateau();
+								+ retourneDomino(dominoCourant, reponse).getType2()); // dit au joueur les types de terrains que possede son domino
+
+						listeJoueurBis.get(0).getPlateau().afficherPlateau();// affiche le plateau initial au joueur pour qu'il puisse choisir ou placer son domino
+						listeJoueurBis.get(0).getPlateau().placerDomino(retourneDomino(dominoCourant, reponse),
+								tourGeneral); // place le domino a l endroit ou le joueur a dit de le placer
+						System.out.println("Voici le plateau de " + listeJoueurBis.get(0).getNom() + " :"); // pour dire a qui appartient le plateau qui va etre affiche
+						listeJoueurBis.get(0).getPlateau().afficherPlateau(); // affiche le plateau du joueur avec les dominos poses
 						dominoCourant.remove(dominoCourant.indexOf(retourneDomino(dominoCourant, reponse)));
 						affNumDomino.remove(affNumDomino.indexOf(reponse));
 
 						cond = true;
 					} else {
 						System.out.println("Ce numéro de domino ne figure pas sur la liste, recommencez.");
+//						faire comme en haut ?? pour que le meme joueur rechoisisse un num parmi la meme pioche
 						cond = false;
 					}
 				} while (cond = false);
@@ -433,11 +478,16 @@ public class Jeu {
 				listeJoueurBis.remove(0);
 			} while (!listeJoueurBis.isEmpty());
 		} while (!listDom.isEmpty());
-	}
+	} //fin du tourGeneral
 
 	public Domino retourneDomino(ArrayList<Domino> domList, int numeroDomino) {
-		// parcourt la liste des dominos courants et qui prend en argument la reponse de
-		// l'utilisateur et retourne le domino correspondant
+		/* parcourt la liste des dominos courants et qui prend en argument la reponse de
+		* l'utilisateur et retourne le domino correspondant
+		* 
+		* retourneDomino(dominoCourant, reponse)
+		* Associe le numero choisi par le joueur parmi les numeros de la pioche (reponse) a un domino (en entier)
+		*/ 
+		
 		Domino domino = null;
 		for (int i = 0; i < domList.size(); i++) {
 			if (domList.get(i).getNumeroDomino() == numeroDomino) {
@@ -447,27 +497,7 @@ public class Jeu {
 				domino = null;
 			}
 		}
-
 		return domino;
 	}
-	// public static ArrayList<Domino> recupereDomino() {
-	// BufferedReader csvReader = null;
-	//
-	// String csvLine;
-	// String csvSplitter = ",";
-	// ArrayList<Domino> ofck = new ArrayList<Domino>();
-	// try {
-	// csvReader = new BufferedReader(new FileReader(csvPath));
-	// while ((csvLine = csvReader.readLine()) != null) {
-	// String[] dominos = csvLine.split(csvSplitter);
-	// Domino domino = new Domino(dominos[4], dominos[0], dominos[1], dominos[2],
-	// dominos[3], "");
-	// ofck.add(domino);
-	// }
-	// } catch (Exception e) {
-	// System.out.println("Une erreur est survenue.");
-	// }
-	// return ofck;
-	// }
 
 }
