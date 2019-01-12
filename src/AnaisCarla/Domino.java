@@ -6,10 +6,10 @@ public class Domino {
 	
 	// Variables d'instance
 	
-	private int NbCouronne1;
+	private int nbCouronne1;
     private String Type1;
     
-    private int NbCouronne2;
+    private int nbCouronne2;
     private String Type2;
     
     private int NumeroDomino;   
@@ -26,8 +26,8 @@ public class Domino {
    
  
 public Domino(int nbCo1, String t1, int nbCo2 , String t2,int num) {
-	this.NbCouronne1 = nbCo1;
-	this.NbCouronne2 = nbCo2;
+	this.nbCouronne1 = nbCo1;
+	this.nbCouronne2 = nbCo2;
 	this.Type1 = t1;
 	this.Type2 = t2;
 	this.NumeroDomino = num;
@@ -37,11 +37,11 @@ public Domino(int nbCo1, String t1, int nbCo2 , String t2,int num) {
 	/** GETTERS **/
 
 	public int getNbCouronne1() {
-		return this.NbCouronne1;
+		return this.nbCouronne1;
 	}
 
 	public int getNbCouronne2() {
-		return this.NbCouronne2;
+		return this.nbCouronne2;
 	}
 
 	public String getType1() {

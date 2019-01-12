@@ -1,23 +1,15 @@
 package AnaisCarla;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+
 import java.util.Map;
-import java.util.Random;
-import java.util.Collections;
 
 public class Jeu {
 
-	static String csvPath = "src/dominos.csv";
+	static String csvPath = "dominos.csv";
 	static Scanner reader = new Scanner(System.in);
 
 	ArrayList<Domino> listDom = DominoCSVtoArrayList.parse_csv_file();
@@ -328,7 +320,7 @@ public class Jeu {
 			for (int i = 0; i < dominoCourant.size(); i++) { // Boucle for qui permet d afficher les numeros de dominos de la pioche
 			/******************** pourquoi mettre dominoCourant.size() et pas affNumDomino.size() ?? ********************/
 				
-				System.out.println(affNumDomino.get(i)); 
+				System.out.println(affNumDomino.get(i)+ ", Face 1 : "+retourneDomino(dominoCourant, affNumDomino.get(i)).getType1()+ ", " +retourneDomino(dominoCourant, affNumDomino.get(i)).getNbCouronne1() + " | Face 2 : " +retourneDomino(dominoCourant, affNumDomino.get(i)).getType2()+ ", " +retourneDomino(dominoCourant, affNumDomino.get(i)).getNbCouronne2()); 
 			}
 			
 			boolean cond; // condition

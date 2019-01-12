@@ -54,7 +54,7 @@ public class DominoCSVtoArrayList {
 
 		try {
 			String dominoLine; // Chaque ligne lue est stockee dans la variable dominoLine
-			dominoBuffer = new BufferedReader(new FileReader("src/dominos.csv")); // BufferedReader sert e lire le
+			dominoBuffer = new BufferedReader(new FileReader("dominos.csv")); // BufferedReader sert e lire le
 																					// fichier CSV
 			int count = 0;
 

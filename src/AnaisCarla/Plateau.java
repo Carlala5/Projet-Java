@@ -59,7 +59,9 @@ public class Plateau {
 		String face1 = domino.getType1();
 		String face2 = domino.getType2();
 		int x1;
+		int x2;
 		int y1;
+		int y2;
 		boolean condition;
 		do {
 			condition = false;
@@ -97,29 +99,27 @@ public class Plateau {
 			}
 		}while(condition == false);
 		afficherPlateau();
+		boolean condition2;
 		
-		System.out.println("\nVeuillez entrer la ligne de la deuxième case de votre domino (entre 0 et 4) ");
-		int x2 = scan.nextInt();
-		System.out.println("\nVeuillez entrer la colonne de la deuxième case de votre domino (entre 0 et 4) ");
-		int y2 = scan.nextInt();
-		boolean cond2;
 		do {
+			condition2 = false;
+			System.out.println("\nVeuillez entrer la ligne de la deuxième case de votre domino (entre 0 et 4) ");
+			x2 = scan.nextInt();
+			System.out.println("\nVeuillez entrer la colonne de la deuxième case de votre domino (entre 0 et 4) ");
+			y2 = scan.nextInt();
+			boolean cond2;
 			if ((x2 < 0) || (x2 > 4) || (y2 < 0) || (y2 > 4)) { // on verifie que la deuxieme face soit bien dans les limites du plateau
 				System.out.println("Une ou les coordonnées entrées ne sont pas valides, recommencez.");
-				cond2 = false;
+				condition2 = false;
 			} else {
-				boolean cond3;
-				do {
 					if (Math.abs(x1 - x2) + Math.abs(y1 - y2) == 1) { // on verifie que les deux faces sont bien adjacentes et non superposees
 						this.plateau[x2][y2] = face2;
-						cond3 = true;
+						condition2 = true;
 					} else {
 						System.out.println("Les cases doivent être adjacentes, veuillez recommencer.");
-						cond3 = false;
+						condition2 = false;
 					}
-				} while (cond3 = false);
 			}
-			cond2 = true;
-		} while (cond2 = false);
+		} while (condition2 == false);
 	}
 }
