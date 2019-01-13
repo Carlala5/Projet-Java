@@ -18,22 +18,4 @@ public class MainClass {
 		
 	}
 
-//		Jeu monJeu = new Jeu();
-//		monJeu.chargeLibrairieDominos()
-//		nb = monJeu.demandeNbJoueur
-//		
-//		for (int i=0; i<nb; i++) {
-//			monJeu.ajoutJoueur(i);
-//			
-//		}
-//		monJeu.definiOrdrePassage();
-//		
-//		while(monJeu.enCours) {
-//			monJeu.joueurSuivantJoue();
-//			monjeu.Affiche();
-//		}
-//	}
-//	monJeu.termine();
-////	
-
 }

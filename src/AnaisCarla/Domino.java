@@ -57,15 +57,6 @@ public Domino(int nbCo1, String t1, int nbCo2 , String t2,int num) {
 		return this.NumeroDomino;
 	}
 
-//public void setCoordonneesGeneral() {
-//	
-//	
-//}
-//public void setCoordonnees1() {
-//	
-//}
-//public void setCoordonnees2() {
-//	
-//}
+
 
 }

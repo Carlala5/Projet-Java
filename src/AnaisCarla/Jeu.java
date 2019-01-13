@@ -307,7 +307,7 @@ public class Jeu {
 			affNumDomino.add(dominoCourant.get(i).getNumeroDomino());
 		}
 		Collections.sort(affNumDomino); // tri les numeros de domino de la liste affNumDomino par ordre croissant
-
+		int itCount = 0;
 		do {
 			int nbJoueursBis = listeJoueurBis.size(); // nbJoueurBis est egal a la taille de la liste listeJoueurBis donc au nombre de joueurs
 			int premierTour = 1;
@@ -323,16 +323,17 @@ public class Jeu {
 				System.out.println(affNumDomino.get(i)+ ", Face 1 : "+retourneDomino(dominoCourant, affNumDomino.get(i)).getType1()+ ", " +retourneDomino(dominoCourant, affNumDomino.get(i)).getNbCouronne1() + " | Face 2 : " +retourneDomino(dominoCourant, affNumDomino.get(i)).getType2()+ ", " +retourneDomino(dominoCourant, affNumDomino.get(i)).getNbCouronne2()); 
 			}
 			
-			boolean cond; // condition
+			boolean cond = false; // condition
 			do {
 				int reponse = reader.nextInt(); // lecture de la reponse
-				
 				if (affNumDomino.contains(reponse)) { // si la reponse de l utilisateur est contenue dans la liste de numeros de dominos					
 					listeJoueurBis.get(j).setDomJoueurElement(retourneDomino(dominoCourant, reponse)); // ajoute a la liste de dominos du joueur le domino qu'il vient de choisir
 					System.out.println("Le roi " + couleurRoi + " a choisi le domino numéro " + reponse); // rappelle au joueur quel domino il vient de choisir
 					System.out.println("Le domino que vous devez placer a pour terrains : "
 							+ retourneDomino(dominoCourant, reponse).getType1() + " , "
 							+ retourneDomino(dominoCourant, reponse).getType2()); // dit au joueur les types de terrains que possede son domino
+						
+						
 					listeJoueurBis.get(j).getPlateau().afficherPlateau(); // affiche le plateau initial au joueur pour qu'il puisse choisir ou placer son domino
 					listeJoueurBis.get(j).getPlateau().placerDomino(retourneDomino(dominoCourant, reponse),
 							premierTour); // place le domino a l endroit ou le joueur a dit de le placer
@@ -343,6 +344,7 @@ public class Jeu {
 					affNumDomino.remove(affNumDomino.indexOf(reponse));
 
 					cond = true;
+						
 				} else {
 					System.out.println("Ce numéro de domino ne figure pas sur la liste, recommencez.");
 //					System.out.println("Le roi de la couleur " + couleurRoi + " doit jouer !");
@@ -356,11 +358,17 @@ public class Jeu {
 					
 					cond = false;
 				}
-			} while (cond = false); //je pense qu'il faut mettre true...
-
+			} while (cond == false); 
+			
 			listeJoueurBis.remove(j);
-		} while (!listeJoueurBis.isEmpty()); // faire ces operations tant que la liste tous les joueurs n ont pas joue
-		
+			if (nbJoueurs == 2 && listeJoueurBis.isEmpty()) {
+				if (itCount == 0){
+				listeJoueurBis.addAll(listeJoueur);
+				itCount++;
+				}
+			}	
+		}while (!listeJoueurBis.isEmpty() ); // faire ces operations tant que la liste tous les joueurs n ont pas joue
+			
 	}// fin du premierTour
 
 	public void tourGeneral(ArrayList<Joueur> listeJoueur, int nbJoueurs) {
@@ -406,7 +414,7 @@ public class Jeu {
 
 				} while (dominoCourant.size() != 4); // on boucle tant que la pioche dominoCourant n est pas egale a 4
 
-			}
+			} 
 
 			ArrayList<Integer> affNumDomino = new ArrayList<Integer>(); 
 			/*
@@ -422,8 +430,8 @@ public class Jeu {
 
 			Joueur premierJoueur = null;
 			for (Joueur joueur : listeJoueurBis) {
-				if (premierJoueur == null || premierJoueur.getSmallestDomino().getNumeroDomino() > joueur
-						.getSmallestDomino().getNumeroDomino()) {
+				if (premierJoueur == null || premierJoueur.getPlusPetitDomino().getNumeroDomino() > joueur
+						.getPlusPetitDomino().getNumeroDomino()) {
 					premierJoueur = joueur;
 
 				}
@@ -441,7 +449,7 @@ public class Jeu {
 				for (int i = 0; i < dominoCourant.size(); i++) {
 					System.out.println(affNumDomino.get(i)+ ", Face 1 : "+retourneDomino(dominoCourant, affNumDomino.get(i)).getType1()+ ", " +retourneDomino(dominoCourant, affNumDomino.get(i)).getNbCouronne1() + " | Face 2 : " +retourneDomino(dominoCourant, affNumDomino.get(i)).getType2()+ ", " +retourneDomino(dominoCourant, affNumDomino.get(i)).getNbCouronne2());
 				}
-				boolean cond; // condition
+				boolean cond = false; // condition
 				do {
 					int reponse = reader.nextInt(); // lecture de la reponse
 					if (affNumDomino.contains(reponse)) { // si la reponse de l utilisateur est contenue dans la liste de numeros de dominos
@@ -450,7 +458,8 @@ public class Jeu {
 						System.out.println("Le domino que vous devez placer a pour terrains : " 
 								+ retourneDomino(dominoCourant, reponse).getType1() + " , "
 								+ retourneDomino(dominoCourant, reponse).getType2()); // dit au joueur les types de terrains que possede son domino
-
+						System.out.println("Pouvez-vous placer ce domino ? oui ou non" );
+					
 						listeJoueurBis.get(0).getPlateau().afficherPlateau();// affiche le plateau initial au joueur pour qu'il puisse choisir ou placer son domino
 						listeJoueurBis.get(0).getPlateau().placerDomino(retourneDomino(dominoCourant, reponse),
 								tourGeneral); // place le domino a l endroit ou le joueur a dit de le placer
@@ -460,12 +469,13 @@ public class Jeu {
 						affNumDomino.remove(affNumDomino.indexOf(reponse));
 
 						cond = true;
+						
 					} else {
 						System.out.println("Ce numéro de domino ne figure pas sur la liste, recommencez.");
 //						faire comme en haut ?? pour que le meme joueur rechoisisse un num parmi la meme pioche
 						cond = false;
 					}
-				} while (cond = false);
+				} while (cond == false);
 
 				listeJoueurBis.remove(0);
 			} while (!listeJoueurBis.isEmpty());

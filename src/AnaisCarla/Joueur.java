@@ -64,18 +64,18 @@ public Joueur(String nom, String couleur, int score, int numeroJoueur, ArrayList
 		return domJoueur.get(i);
 	}
 	
-	public Domino getSmallestDomino() {
-		Domino smallest = null;
+	public Domino getPlusPetitDomino() {
+		Domino plusPetit = null;
 			if (this.domJoueur.size() == 0) {
 			System.out.println("Aucun domino pour ce joueur");
 			System.out.println(this.toString());
 			}
 				for (Domino domino: this.domJoueur) {
-					if (smallest == null || smallest.getNumeroDomino() > domino.getNumeroDomino()) {
-				smallest = domino;
+					if (plusPetit == null || plusPetit.getNumeroDomino() > domino.getNumeroDomino()) {
+				plusPetit = domino;
 					}
 				}
-		return smallest;
+		return plusPetit;
 		}
 	
 	public Plateau getPlateau() {
