@@ -58,5 +58,4 @@ public Domino(int nbCo1, String t1, int nbCo2 , String t2,int num) {
 	}
 
 
-
 }

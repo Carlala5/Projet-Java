@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Jeu {
 
-	static String csvPath = "dominos.csv";
+	static String csvPath = "src/dominos.csv";
 	static Scanner reader = new Scanner(System.in);
 
 	ArrayList<Domino> listDom = DominoCSVtoArrayList.parse_csv_file();
@@ -347,17 +347,10 @@ public class Jeu {
 						
 				} else {
 					System.out.println("Ce numéro de domino ne figure pas sur la liste, recommencez.");
-//					System.out.println("Le roi de la couleur " + couleurRoi + " doit jouer !");
-//					System.out.println("\n Veuillez choisir un de ces dominos : \n");
-//
-//					for (int i = 0; i < dominoCourant.size(); i++) { // Boucle for qui permet d afficher les numeros de dominos de la pioche
-//					/******************** pourquoi mettre dominoCourant.size() et pas affNumDomino.size() ?? ********************/
-//						
-//						System.out.println(affNumDomino.get(i)); 
-//					}
 					
 					cond = false;
 				}
+
 			} while (cond == false); 
 			
 			listeJoueurBis.remove(j);
@@ -472,7 +465,6 @@ public class Jeu {
 						
 					} else {
 						System.out.println("Ce numéro de domino ne figure pas sur la liste, recommencez.");
-//						faire comme en haut ?? pour que le meme joueur rechoisisse un num parmi la meme pioche
 						cond = false;
 					}
 				} while (cond == false);
