@@ -12,10 +12,7 @@ public class MainClass {
 		System.out.println("\nLe royaume est actuellement en construction, nous allons donc jouer sur la console.\nVeuillez nous excuser pour la gêne occasionnée.\n");
 		
 		Jeu jeu = new Jeu();
-		
-	// FAIRE : UNE OPTION POUR SI ON NE PEUT PAS PLACER UN DOMINO ?????
-		
-		
+
 	}
 
 }

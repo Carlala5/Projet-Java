@@ -318,7 +318,7 @@ public class Jeu {
 			System.out.println("\n Veuillez choisir un de ces dominos : \n");
 
 			for (int i = 0; i < dominoCourant.size(); i++) { // Boucle for qui permet d afficher les numeros de dominos de la pioche
-			/******************** pourquoi mettre dominoCourant.size() et pas affNumDomino.size() ?? ********************/
+			
 				
 				System.out.println(affNumDomino.get(i)+ ", Face 1 : "+retourneDomino(dominoCourant, affNumDomino.get(i)).getType1()+ ", " +retourneDomino(dominoCourant, affNumDomino.get(i)).getNbCouronne1() + " | Face 2 : " +retourneDomino(dominoCourant, affNumDomino.get(i)).getType2()+ ", " +retourneDomino(dominoCourant, affNumDomino.get(i)).getNbCouronne2()); 
 			}
