@@ -39,22 +39,21 @@ public class DominoCSVtoArrayList {
 
 	public static ArrayList<Domino> parse_csv_file() {
 
+		BufferedReader dominoBuffer = null;
 		/*
 		 * BufferedReader prend qqchose en memoire. Si il n y avait pas = null,
 		 * dominoBuffer pourrait prendre n importe quelle valeur de la memoire. Donc
 		 * toutes les variables qui jouent avec de la memoire, on les met à null
 		 */
-
-		BufferedReader dominoBuffer = null;
 		
+		ArrayList<Domino> listDom = new ArrayList<Domino>(); 												
 		/*
 		 * Creation d une nouvelle liste de dominos : listDom qui contient des <Domino>
 		 */
-		ArrayList<Domino> listDom = new ArrayList<Domino>(); 												
-
+		
 		try {
 			String dominoLine; // Chaque ligne lue est stockee dans la variable dominoLine
-			dominoBuffer = new BufferedReader(new FileReader("dominos.csv")); // BufferedReader sert e lire le
+			dominoBuffer = new BufferedReader(new FileReader("src/dominos.csv")); // BufferedReader sert e lire le
 																					// fichier CSV
 			int count = 0;
 

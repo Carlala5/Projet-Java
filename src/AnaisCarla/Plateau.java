@@ -65,7 +65,7 @@ public class Plateau {
 		boolean condition;
 		do {
 			condition = false;
-			if (typeTour == 1) {
+			if (typeTour == 1) { // condition pour le premier tour de jeu seulement
 				System.out.println("\nVeuillez entrer la ligne de la premiere case de votre domino (entre 0 et 4) ");
 				System.out.println("Celle-ci doit se trouver à côté de votre château.");
 			} else {
@@ -75,25 +75,25 @@ public class Plateau {
 			System.out.println("\nVeuillez entrer la colonne de la premiere case de votre domino (entre 0 et 4) ");
 			System.out.println("Elle ne doit pas se trouver sur le château !");
 			y1 = scan.nextInt();
-			if ((x1 < 0) || (x1 > 4) || (y1 < 0) || (y1 > 4)) {
+			if ((x1 < 0) || (x1 > 4) || (y1 < 0) || (y1 > 4)) { // verifie que le x1 ou le y1 donne par le joueur est bien dans les limites du plateau
 				System.out.println("Une ou les coordonnées entrées ne sont pas valides, recommencez.");
 				condition = false;
 			} else {
 				if (typeTour == 1) {
-						if (x1 == 0 && y1 == 0) {
+						if (x1 == 0 && y1 == 0) { // verifie qu un domino ne se place pas sur la case interdite du chateau
 							System.out.println(
 									"Vous devez placer votre premier domino à côté de votre château, et non dessus ! Recommencez.");
 							condition = false;
 						} else if (Math.abs(0 - x1) + Math.abs(0 - y1) == 1) {
-							this.plateau[x1][y1] = face1;
+							this.plateau[x1][y1] = face1; // on place la premiere face en x1 et y1
 							condition = true;
 						} else {
 							System.out.println("Ces coordonnées ne sont pas valides, recommencez !");
 							condition = false;
 						}
 
-				} else if (typeTour == 2) {
-					this.plateau[x1][y1] = face1;
+				} else if (typeTour == 2) { // pour les tours suivant, il n y a plus de probleme de chateau
+					this.plateau[x1][y1] = face1; // on place la premiere face en x1 et y1
 					condition = true;
 				}
 			}
