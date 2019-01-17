@@ -56,6 +56,8 @@ public Domino(int nbCo1, String t1, int nbCo2 , String t2,int num) {
 	public int getNumeroDomino() {
 		return this.NumeroDomino;
 	}
-
+public int getCouronnes() {
+	return this.nbCouronne1 + this.nbCouronne2;
+}
 
 }

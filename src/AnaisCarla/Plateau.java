@@ -11,6 +11,8 @@ public class Plateau {
 
 	private String[][] plateau;
 
+	
+
 	public Plateau() {
 		constructionPlateau();
 	}
@@ -122,4 +124,14 @@ public class Plateau {
 			}
 		} while (condition2 == false);
 	}
+
+	public String[][] getPlateau() {
+		return plateau;
+	}
+
+	public void setPlateau(String[][] plateau) {
+		this.plateau = plateau;
+	}
+
+	
 }

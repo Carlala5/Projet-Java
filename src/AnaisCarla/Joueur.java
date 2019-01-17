@@ -108,4 +108,15 @@ public Joueur(String nom, String couleur, int score, int numeroJoueur, ArrayList
 		this.plateau = plateau;
 	}
 
+	public int scoreFinal () {
+		
+		
+		int couronneCount = 0;
+		
+	for (Domino domino : this.domJoueur) {
+		couronneCount += domino.getCouronnes();
+		
+	}
+	return couronneCount;
+	}	
 }
