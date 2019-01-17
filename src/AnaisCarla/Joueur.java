@@ -118,5 +118,6 @@ public Joueur(String nom, String couleur, int score, int numeroJoueur, ArrayList
 		
 	}
 	return couronneCount;
-	}	
+	}
+
 }

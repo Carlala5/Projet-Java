@@ -264,7 +264,7 @@ public class Jeu {
 
 		listeJoueurBis.addAll(listeJoueur);
 		Collections.shuffle(listeJoueurBis);
-		
+		//shuffle : mettre au hasard dans la liste (les joueurs)
 		
 		/** Generation de la pioche de dominos **/
 		
@@ -478,9 +478,17 @@ public class Jeu {
 			} while (!listeJoueurBis.isEmpty());
 		} while (!listDom.isEmpty());
 		// affichage score
+		int isMax = 0;
+		String joueurIsMax = "" ; 
 		for (Joueur joueur : listeJoueur) {	
+			joueur.setScore(joueur.scoreFinal());
 			System.out.println("\nLe score final du joueur "+ joueur.getNom() +" est : " +joueur.scoreFinal());
+			if (joueur.getScore() > isMax) {
+				isMax = joueur.getScore();
+				joueurIsMax = joueur.getNom();
+			}
 		}
+		System.out.println("Le gagnant de cette partie est : " +joueurIsMax+ " avec un score de : " +isMax);
 	} //fin du tourGeneral
 
 	public Domino retourneDomino(ArrayList<Domino> domList, int numeroDomino) {
